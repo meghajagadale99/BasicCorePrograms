@@ -3,33 +3,23 @@ package com.bridgelabz;
 import java.util.Scanner;
 
 public class PrimeFactor {
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int number = s.nextInt();
-        primeFactors(number);
-    }
-
-    private static boolean isPrime(int number) {
-        boolean prime = true;
-        for (int i = 2; i < number; i++) {
-            if (number % i == 0) {
-                prime = false;
-                break;
-            }
-
-        }
-        return prime;
-    }
-
-    private static void primeFactors(int primeFactors) {
+    static void primeFactor(int number) {
         int i = 2;
-        while (primeFactors > 1) {
-            if (primeFactors % i == 0 && isPrime(i) == true) {
+        while (i <= number) {
+            if (number % i == 0) {
                 System.out.println(i);
-                primeFactors = primeFactors / i;
+                while (number % i == 0)
+                    number /= i;
+            } else {
+                i++;
             }
-            i++;
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Enter  a number:");
+        Scanner sc = new Scanner(System.in);
+        int number = sc.nextInt();
+        primeFactor(number);
     }
 }
