@@ -3,37 +3,33 @@ package com.bridgelabz;
 import java.util.Scanner;
 
 public class PrimeFactor {
-
-    public static void getPrimeFactor(int n) {
-        int flag = 0;
-        int check = 0;
-        int findFactor = 0;
-        for (int i = 2; i <= n / 2; i++) {
-            if (n % i == 0) {
-                findFactor = i;
-                for (int j = 2; j <= findFactor / 2; j++) {
-                    if (findFactor % j == 0) {
-                        flag = 1;
-                        break;
-                    }
-                }
-                if (flag == 0) {
-                    System.out.println(findFactor);
-                    check = 1;
-                }
-            }
-        }
-        if (check == 0)
-            System.out.println("No Prime Factor Found Except 1 and " + n);
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int number = s.nextInt();
+        primeFactors(number);
     }
 
-    public static void main(String[] args) {
+    private static boolean isPrime(int number) {
+        boolean prime = true;
+        for (int i = 2; i < number; i++) {
+            if (number % i == 0) {
+                prime = false;
+                break;
+            }
 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the number to find PrimeFactor: ");
-        int n = sc.nextInt();
-        sc.close();
-        getPrimeFactor(n);
+        }
+        return prime;
+    }
+
+    private static void primeFactors(int primeFactors) {
+        int i = 2;
+        while (primeFactors > 1) {
+            if (primeFactors % i == 0 && isPrime(i) == true) {
+                System.out.println(i);
+                primeFactors = primeFactors / i;
+            }
+            i++;
+        }
     }
 }
-
